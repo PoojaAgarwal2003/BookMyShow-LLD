@@ -17,8 +17,17 @@ public class DemoDataInitializer {
     @Bean
     CommandLineRunner seedDemoData(MovieRepository movies, CityRepository cities,
             TheatreRepository theatres, ScreenRepository screens, SeatRepository seats,
-            ShowRepository shows, ShowSeatRepository showSeats) {
+            ShowRepository shows, ShowSeatRepository showSeats,
+            com.bookmyshow.user.UserRepository users,
+            org.springframework.security.crypto.password.PasswordEncoder passwordEncoder) {
         return args -> {
+            com.bookmyshow.user.User admin = users.findByEmail("admin").orElseGet(() ->
+                    new com.bookmyshow.user.User("Administrator", "admin", passwordEncoder.encode("admin")));
+            admin.setName("Administrator");
+            admin.setPasswordHash(passwordEncoder.encode("admin"));
+            admin.setAdmin(true);
+            users.save(admin);
+
             City gurugram = cities.findByNameIgnoreCase("Gurugram")
                     .orElseGet(() -> {
                         City city = new City();

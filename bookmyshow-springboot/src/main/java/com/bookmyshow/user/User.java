@@ -18,6 +18,8 @@ public class User {
     private String email;
     @Column(nullable = false)
     private String passwordHash;
+    @Column(nullable = false, columnDefinition = "boolean default false")
+    private boolean admin = false;
 
     public User(String name, String email, String passwordHash) {
         this.name = name;

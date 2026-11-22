@@ -10,9 +10,9 @@ public final class AuthDtos {
             @Size(min = 8) String password) {
     }
 
-    public record LoginRequest(@Email @NotBlank String email, @NotBlank String password) {
+    public record LoginRequest(@NotBlank String email, @NotBlank String password) {
     }
 
-    public record AuthResponse(String token, Long userId, String email) {
+    public record AuthResponse(String token, Long userId, String email, boolean admin) {
     }
 }
