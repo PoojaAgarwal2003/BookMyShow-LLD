@@ -1,0 +1,20 @@
+### Register
+POST http://localhost:8080/api/v1/auth/register
+Content-Type: application/json
+
+{"name":"Demo User","email":"demo@example.com","password":"Password123"}
+
+### Login
+POST http://localhost:8080/api/v1/auth/login
+Content-Type: application/json
+
+{"email":"demo@example.com","password":"Password123"}
+
+### Movies
+GET http://localhost:8080/api/v1/movies
+
+### Shows
+GET http://localhost:8080/api/v1/shows?movieId=1
+
+### Health
+GET http://localhost:8080/actuator/health
